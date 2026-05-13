@@ -190,7 +190,7 @@ a:focus-visible, button:focus-visible {
 .hero-title {
   font-family: var(--display);
   font-weight: var(--display-weight);
-  font-size: clamp(56px, 11.5vw, 200px);
+  font-size: clamp(40px, 6vw, 100px);
   line-height: .92;
   letter-spacing: var(--display-tighten);
   color: var(--paper);
@@ -577,7 +577,7 @@ a:focus-visible, button:focus-visible {
 .contact-title {
   font-family: var(--display);
   font-weight: var(--display-weight);
-  font-size: clamp(32px, 10vw, 220px);
+  font-size: clamp(32px, 6vw, 100px);
   line-height: .9;
   letter-spacing: var(--display-tighten);
   color: var(--paper);
