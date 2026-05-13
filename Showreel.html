@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Panos Lambrakis — Showreel 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Nunito:wght@300;400;600;700;800&family=Quicksand:wght@400;500;600;700&family=Comfortaa:wght@400;500;700&family=Mulish:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="thumbnails.css">
+
+<style>
+  :root{
+    --bg: #06080d;
+    --surface: #10141c;
+    --border: #1d2330;
+    --paper: #ECE7DD;
+    --muted: #6C7080;
+    --accent: #D9B97A;
+
+    /* default → "Round" (Varela Round everywhere + JetBrains Mono).
+       --display-italic + --display-tighten + --display-weight are set by the Typography tweak. */
+    --display: 'Varela Round', ui-sans-serif, -apple-system, sans-serif;
+    --sans: 'Varela Round', ui-sans-serif, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    --motion-speed: 1;
+    --display-italic: normal;
+    --display-tighten: -.02em;
+    --display-weight: 700;
+
+    --gutter: 32px;
+    --max-w: 1640px;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+  html, body{ background: var(--bg); color: var(--paper); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+  body{ overflow-x: hidden; }
+
+  ::selection{ background: var(--accent); color: var(--bg); }
+
+  a{ color: inherit; text-decoration: none; }
+  button{ font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  ul{ list-style: none; }
+
+  .container{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  /* ── available banner: top ticker ────────────────────────────────── */
+  .available-banner{
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    color: var(--paper);
+  }
+  .available-banner .ticker{
+    display: flex;
+    gap: 48px;
+    white-space: nowrap;
+    animation: ticker calc(60s / var(--motion-speed)) linear infinite;
+  }
+  .available-banner span{ display: inline-flex; align-items: center; gap: 10px; }
+  .available-banner .dot{
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #6BE07A;
+    box-shadow: 0 0 0 4px rgba(107, 224, 122, .18);
+    animation: blink calc(2s / var(--motion-speed)) ease-in-out infinite;
+  }
+  @keyframes ticker{ to { transform: translateX(-50%); } }
+  @keyframes blink{ 0%,100%{ opacity:1; } 50%{ opacity:.4; } }
+
+  /* ── top nav ─────────────────────────────────────────────────────── */
+  .topnav{
+    position: sticky; top: 0; z-index: 50;
+    background: color-mix(in oklab, var(--bg) 86%, transparent);
+    backdrop-filter: blur(12px) saturate(120%);
+    -webkit-backdrop-filter: blur(12px) saturate(120%);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav .inner{
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand{
+    display: flex; align-items: center; gap: 12px;
+    font: 500 13px/1 var(--mono);
+    letter-spacing: .04em;
+  }
+  .brand-mark{
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--paper);
+    position: relative;
+  }
+  .brand-mark::before{
+    content:""; position:absolute; inset: 3px;
+    border-radius: 50%;
+    background: var(--bg);
+  }
+  .brand-mark::after{
+    content:""; position:absolute; top: 50%; left: 50%;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    transform: translate(-50%, -50%);
+    animation: brandblink calc(3s / var(--motion-speed)) ease-in-out infinite;
+  }
+  @keyframes brandblink{ 0%,100%{ opacity:1; transform: translate(-50%,-50%) scale(1); } 50%{ opacity:.4; transform: translate(-50%,-50%) scale(.7); } }
+
+  .brand b{ font-weight: 500; }
+  .brand em{ font-style: normal; color: var(--muted); margin-left: 6px; }
+
+  .nav-links{
+    display: flex; gap: 40px;
+    font: 400 13px/1 var(--mono);
+    letter-spacing: .04em;
+  }
+  .nav-links a{
+    position: relative;
+    padding: 6px 0;
+    color: var(--paper);
+    transition: color .2s;
+  }
+  .nav-links a:hover{ color: var(--accent); }
+  .nav-links a .num{
+    color: var(--muted);
+    margin-right: 8px;
+    font-size: 10px;
+  }
+
+  .nav-meta{
+    display: flex; align-items: center; gap: 20px;
+    font: 400 12px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: .06em;
+  }
+  .clock{ color: var(--paper); font-variant-numeric: tabular-nums; }
+
+  /* ── hero ────────────────────────────────────────────────────────── */
+  .hero{
+    padding: clamp(80px, 12vh, 160px) 0 clamp(60px, 8vh, 100px);
+    position: relative;
+  }
+  .hero-eyebrow{
+    display: flex; align-items: center; gap: 14px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 56px;
+  }
+  .hero-eyebrow .line{
+    flex: 0 0 56px; height: 1px; background: var(--border);
+  }
+  .hero-eyebrow .line.right{ flex: 1; }
+
+  .hero-title{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: clamp(56px, 11.5vw, 200px);
+    line-height: .92;
+    letter-spacing: var(--display-tighten);
+    color: var(--paper);
+    max-width: 14ch;
+  }
+  .hero-title em{
+    font-style: var(--display-italic);
+    color: var(--accent);
+  }
+  .hero-title .ampersand{
+    font-style: var(--display-italic);
+    color: var(--muted);
+  }
+
+  .hero-foot{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 60px;
+    align-items: end;
+    margin-top: 80px;
+  }
+  .hero-bio{
+    max-width: 36ch;
+    font: 400 16px/1.45 var(--sans);
+    color: color-mix(in oklab, var(--paper) 85%, transparent);
+  }
+  .hero-bio b{ color: var(--paper); font-weight: 500; }
+  .hero-stats{
+    display: flex; gap: 48px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-stats .stat{ display: flex; flex-direction: column; gap: 8px; }
+  .hero-stats .stat-val{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: 36px;
+    color: var(--paper);
+    letter-spacing: -.02em;
+    text-transform: none;
+  }
+  .scroll-cue{
+    display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scroll-cue .arrow{
+    width: 1px; height: 32px;
+    background: linear-gradient(180deg, var(--muted), transparent);
+    position: relative;
+    animation: scrollcue calc(2.4s / var(--motion-speed)) ease-in-out infinite;
+  }
+  @keyframes scrollcue{
+    0%   { transform: translateY(-6px); opacity: .3; }
+    50%  { opacity: 1; }
+    100% { transform: translateY(14px); opacity: 0; }
+  }
+
+  /* ── reel preview card ───────────────────────────────────────────── */
+  .reel-wrap{
+    margin: 100px 0 0;
+  }
+  .reel-meta{
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 18px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .reel-meta .lhs{ display: flex; gap: 32px; align-items: baseline; }
+  .reel-meta b{ color: var(--paper); font-weight: 500; }
+  .reel{
+    position: relative;
+    aspect-ratio: 21 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #06080d;
+    isolation: isolate;
+    cursor: pointer;
+  }
+  /* layered ambient reel motion */
+  .reel-bg{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(60% 80% at 30% 40%, color-mix(in oklab, var(--accent) 35%, transparent), transparent 70%),
+      radial-gradient(50% 70% at 75% 60%, #3a5a99, transparent 70%),
+      radial-gradient(40% 50% at 50% 50%, #1a1a3e, transparent 80%),
+      #06080d;
+    filter: blur(20px) saturate(120%);
+    animation: reel-bg calc(22s / var(--motion-speed)) ease-in-out infinite alternate;
+  }
+  @keyframes reel-bg{
+    0%   { transform: scale(1.05) translate(0,0); }
+    100% { transform: scale(1.18) translate(-3%, 2%); }
+  }
+  .reel-grain{
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(rgba(236,231,221,.4) 0.5px, transparent 0.5px);
+    background-size: 3px 3px;
+    opacity: .08;
+    mix-blend-mode: overlay;
+    animation: grain calc(.4s / var(--motion-speed)) steps(4) infinite;
+  }
+  @keyframes grain{ 0%{transform:translate(0,0);} 25%{transform:translate(-1px,1px);} 50%{transform:translate(1px,-1px);} 75%{transform:translate(-1px,-1px);} 100%{transform:translate(1px,1px);} }
+
+  .reel-shape{
+    position:absolute; left:50%; top:50%;
+    transform: translate(-50%, -50%);
+    width: clamp(120px, 28%, 360px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid rgba(236,231,221,.18);
+    animation: reel-spin calc(40s / var(--motion-speed)) linear infinite;
+  }
+  .reel-shape::before{
+    content:""; position:absolute; inset: 8%;
+    border-radius: 50%;
+    border: 1px solid rgba(236,231,221,.1);
+  }
+  .reel-shape::after{
+    content:""; position:absolute; inset: 22%;
+    border-radius: 50%;
+    border: 1px dashed rgba(236,231,221,.16);
+  }
+  @keyframes reel-spin{ to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+  .reel-overlay{
+    position:absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: clamp(24px, 3.5vw, 56px);
+    z-index: 3;
+  }
+  .reel-overlay .row{
+    display: flex; justify-content: space-between;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(236,231,221, .8);
+  }
+  .reel-overlay .center{
+    align-self: center;
+    display: flex; align-items: center; gap: 24px;
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: clamp(36px, 6.5vw, 96px);
+    line-height: 1;
+    color: var(--paper);
+    letter-spacing: -.025em;
+    transition: color .25s;
+  }
+  .reel:hover .center{ color: var(--accent); }
+  .play-disc{
+    width: clamp(56px, 8vw, 96px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid var(--paper);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .25s, border-color .25s;
+  }
+  .reel:hover .play-disc{ background: var(--paper); }
+  .play-disc::before{
+    content:""; display: block;
+    border-style: solid;
+    border-width: 10px 0 10px 16px;
+    border-color: transparent transparent transparent var(--paper);
+    margin-left: 4px;
+    transition: border-color .25s;
+  }
+  .reel:hover .play-disc::before{ border-left-color: var(--bg); }
+
+  .reel-bars{
+    display: flex; align-items: end; gap: 3px; height: 14px;
+  }
+  .reel-bars i{
+    display:block; width: 2px; background: var(--paper);
+    animation: bar calc(1.2s / var(--motion-speed)) ease-in-out infinite;
+  }
+  .reel-bars i:nth-child(1){ animation-delay: -.1s; } .reel-bars i:nth-child(2){ animation-delay: -.4s; }
+  .reel-bars i:nth-child(3){ animation-delay: -.7s; } .reel-bars i:nth-child(4){ animation-delay: -.2s; }
+  .reel-bars i:nth-child(5){ animation-delay: -.5s; }
+  @keyframes bar{ 0%,100%{ height: 3px; } 50%{ height: 14px; } }
+
+  /* ── section heading ─────────────────────────────────────────────── */
+  .section{ padding: clamp(80px, 12vh, 160px) 0; }
+  .section-head{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 40px;
+    align-items: end;
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    margin-bottom: 56px;
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .section-head .label{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: clamp(28px, 3.5vw, 48px);
+    text-transform: none;
+    color: var(--paper);
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+  .section-head .label .num{
+    color: var(--muted);
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .14em;
+    margin-right: 16px;
+    vertical-align: middle;
+  }
+  .section-head .lede{
+    max-width: 36ch;
+    font: 400 13px/1.5 var(--sans);
+    text-transform: none;
+    letter-spacing: 0;
+    color: color-mix(in oklab, var(--paper) 75%, transparent);
+    justify-self: end;
+  }
+
+  /* ── works grid ──────────────────────────────────────────────────── */
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px 24px;
+  }
+  .project{
+    grid-column: span var(--col, 6);
+    container-type: inline-size;
+  }
+  .project .thumb{
+    cursor: pointer;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .project:hover .thumb{ transform: translateY(-4px); }
+  .project .thumb::before{
+    content:"";
+    position:absolute; inset: 0;
+    box-shadow: inset 0 0 0 1px var(--border);
+    border-radius: inherit;
+    z-index: 6;
+    pointer-events: none;
+    transition: box-shadow .25s;
+  }
+  .project:hover .thumb::before{ box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 70%, transparent); }
+
+  .project .meta{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px 24px;
+    padding: 16px 4px 0;
+    align-items: baseline;
+  }
+  .project .title{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: clamp(22px, 1.9vw, 28px);
+    line-height: 1;
+    letter-spacing: -.015em;
+    color: var(--paper);
+  }
+  .project .num{
+    font: 500 11px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: .14em;
+  }
+  .project .tags{
+    grid-column: 1 / -1;
+    display: flex; gap: 24px;
+    font: 400 11px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .project .tags .sep{ color: var(--border); }
+  .project .tags .client{ color: color-mix(in oklab, var(--paper) 70%, transparent); }
+
+  /* ── clients ─────────────────────────────────────────────────────── */
+  .clients-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--border);
+  }
+  .clients-list .cell{
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: clamp(24px, 2.2vw, 34px);
+    letter-spacing: -.02em;
+    color: var(--paper);
+    display: flex; align-items: center; gap: 18px;
+    transition: color .2s;
+  }
+  .clients-list .cell:hover{ color: var(--accent); }
+  .clients-list .cell .num{
+    font: 500 10px/1 var(--mono);
+    color: var(--muted);
+    letter-spacing: .14em;
+    min-width: 24px;
+    text-align: right;
+    font-style: normal;
+  }
+
+  /* ── about ───────────────────────────────────────────────────────── */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+  .about-lead{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: clamp(28px, 3vw, 44px);
+    line-height: 1.15;
+    letter-spacing: -.015em;
+    color: var(--paper);
+    max-width: 18ch;
+  }
+  .about-lead em{ font-style: var(--display-italic); color: var(--accent); }
+
+  .about-cols{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    font: 400 14px/1.65 var(--sans);
+    color: color-mix(in oklab, var(--paper) 78%, transparent);
+  }
+  .about-cols p + p{ margin-top: 1em; }
+
+  .about-info{
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-top: 48px;
+    margin-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .about-info dt{
+    font: 500 10px/1 var(--mono);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .about-info dd{
+    font: 400 13px/1.6 var(--sans);
+    color: var(--paper);
+  }
+  .about-info dd b{ font-weight: 500; }
+
+  /* ── contact CTA ─────────────────────────────────────────────────── */
+  .contact{
+    border-top: 1px solid var(--border);
+    padding: clamp(120px, 18vh, 200px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-eyebrow{
+    font: 500 11px/1 var(--mono);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+  .contact-title{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-size: clamp(64px, 12vw, 220px);
+    line-height: .9;
+    letter-spacing: var(--display-tighten);
+    color: var(--paper);
+  }
+  .contact-title em{ font-style: var(--display-italic); color: var(--accent); }
+  .contact-foot{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 80px;
+    align-items: end;
+  }
+  .contact-email{
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-style: var(--display-italic);
+    font-size: clamp(28px, 3.2vw, 48px);
+    color: var(--paper);
+    letter-spacing: -.02em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    transition: color .25s, border-color .25s;
+  }
+  .contact-email:hover{ color: var(--accent); border-color: var(--accent); }
+  .contact-email .arrow{
+    width: 28px; height: 1px; background: currentColor; position: relative;
+  }
+  .contact-email .arrow::after{
+    content:""; position:absolute; right:0; top: 50%;
+    width: 8px; height: 8px;
+    border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .contact-socials{
+    display: flex; gap: 32px; justify-self: end;
+    font: 400 13px/1 var(--mono);
+    letter-spacing: .06em;
+  }
+  .contact-socials a{
+    color: var(--muted);
+    transition: color .2s;
+  }
+  .contact-socials a:hover{ color: var(--paper); }
+
+  /* ── footer ──────────────────────────────────────────────────────── */
+  footer{
+    border-top: 1px solid var(--border);
+    padding: 28px 0 32px;
+    font: 400 11px/1.5 var(--mono);
+    letter-spacing: .04em;
+    color: var(--muted);
+  }
+  footer .inner{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  footer .center{ text-align: center; }
+  footer .right{ text-align: right; }
+  footer a:hover{ color: var(--paper); }
+
+  /* ── responsive ─────────────────────────────────────────────────── */
+  @media (max-width: 900px){
+    .grid{ gap: 28px 16px; }
+    .project{ grid-column: span 12 !important; }
+    .clients-list{ grid-template-columns: repeat(2, 1fr); }
+    .about-grid, .about-cols, .about-info, .contact-foot{ grid-template-columns: 1fr; gap: 32px; }
+    .hero-foot{ grid-template-columns: 1fr; }
+    .nav-links{ display: none; }
+    .reel-overlay .center{ gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── available banner ─────────────────────────────────────────────── -->
+<div class="available-banner" data-screen-label="00 Banner">
+  <div class="ticker">
+    <span><i class="dot"></i> Available for Q3 2026 commissions</span>
+    <span>Now booking · Brand films · Title sequences · Original work</span>
+    <span>Based in Athens · Working worldwide</span>
+    <span><i class="dot"></i> Available for Q3 2026 commissions</span>
+    <span>Now booking · Brand films · Title sequences · Original work</span>
+    <span>Based in Athens · Working worldwide</span>
+  </div>
+</div>
+
+<!-- ── top nav ──────────────────────────────────────────────────────── -->
+<header class="topnav">
+  <div class="container inner">
+    <a class="brand" href="#top">
+      <span class="brand-mark"></span>
+      <span><b>Panos Lambrakis</b><em>Motion Studio</em></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#work"><span class="num">01</span>Index</a>
+      <a href="#clients"><span class="num">02</span>Clients</a>
+      <a href="#info"><span class="num">03</span>Info</a>
+      <a href="#contact"><span class="num">04</span>Contact</a>
+    </nav>
+    <div class="nav-meta">
+      <span>Athens, GR</span>
+      <span class="clock" id="clock">—:—:—</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── hero ─────────────────────────────────────────────────────────── -->
+<section class="hero" id="top" data-screen-label="01 Hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="line"></span>
+      <span>SHOWREEL — Vol. IX · MMXXVI</span>
+      <span class="line right"></span>
+      <span>16 selected works</span>
+    </div>
+
+    <h1 class="hero-title">
+      Graphic design, motion,<br>
+      <em>and the things&nbsp;between.</em>
+    </h1>
+
+    <div class="hero-foot">
+      <p class="hero-bio">
+        <b>Panos Lambrakis</b> is an independent graphic and motion designer
+        crafting identities, title sequences, key art and generative work —
+        often with <b>AI in the loop</b>. Selected reel updated <b>May 2026</b>.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-val">87</span>
+          <span>Projects shipped</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">02</span>
+          <span>Disciplines &mdash; still &amp; moving</span>
+        </div>
+        <div class="stat">
+          <span class="stat-val">14</span>
+          <span>Awards · Press</span>
+        </div>
+      </div>
+
+      <div class="scroll-cue">
+        <span>Scroll to index</span>
+        <span class="arrow"></span>
+      </div>
+    </div>
+
+    <!-- reel preview -->
+    <div class="reel-wrap">
+      <div class="reel-meta">
+        <div class="lhs">
+          <span><b>Reel · 2026</b></span>
+          <span>Stills + motion</span>
+          <span>02:43 runtime</span>
+        </div>
+        <span>Latest cut · May 2026</span>
+      </div>
+
+      <div class="reel" id="reel">
+        <div class="reel-bg"></div>
+        <div class="reel-shape"></div>
+        <div class="reel-grain"></div>
+        <div class="reel-overlay">
+          <div class="row">
+            <span>REC · 04 12 26</span>
+            <div class="reel-bars"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="center">
+            <span class="play-disc"></span>
+            <span>Play&nbsp;reel</span>
+          </div>
+          <div class="row">
+            <span>02 : 43 / 02 : 43</span>
+            <span>● 4K · STEREO · DOLBY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── selected works ───────────────────────────────────────────────── -->
+<section class="section" id="work" data-screen-label="02 Work">
+  <div class="container">
+    <div class="section-head">
+      <div class="label"><span class="num">01</span>Selected works</div>
+      <span></span>
+      <p class="lede">
+        Sixteen pieces — brand identity, title sequences, key art,
+        posters, ad campaigns, and AI-assisted experiments. Hover to glimpse.
+      </p>
+    </div>
+
+    <ul class="grid">
+
+      <!-- 01 PARALLAX — Editorial cover (still) -->
+      <li class="project" style="--col:7">
+        <div class="thumb thumb-parallax">
+          <div class="layer">PARALLAX · PARALLAX · PARALLAX · </div>
+          <div class="layer">PARALLAX · PARALLAX · </div>
+          <div class="layer">PARALLAX · PARALLAX · PARALLAX · </div>
+          <div class="thumb-disc"><span>Still</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Editorial · Cover series</span>
+          <span class="thumb-runtime">A1 · Print</span>
+        </div>
+        <div class="meta">
+          <div class="title">Parallax</div>
+          <div class="num">SW—01</div>
+          <div class="tags">
+            <span class="client">Sports Tribune</span>
+            <span class="sep">/</span>
+            <span>Editorial · Cover series</span>
+            <span class="sep">/</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 02 AURORA — Title sequence (motion · AI) -->
+      <li class="project" style="--col:5">
+        <div class="thumb thumb-aurora">
+          <i class="band"></i><i class="band"></i><i class="band"></i>
+          <div class="thumb-disc"><span>Motion</span><span class="ai">AI</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Title sequence</span>
+          <span class="thumb-runtime">02 : 14</span>
+        </div>
+        <div class="meta">
+          <div class="title">Aurora</div>
+          <div class="num">SW—02</div>
+          <div class="tags">
+            <span class="client">A24 Short Films</span>
+            <span class="sep">/</span>
+            <span>Title sequence · AI-assisted</span>
+            <span class="sep">/</span>
+            <span>2025</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 03 CLOSER — Ad campaign (motion, full bleed feature) -->
+      <li class="project" style="--col:12">
+        <div class="thumb thumb-closer">
+          <div class="marq">
+            Closer <span>·</span> Closer <span>·</span> Closer <span>·</span>
+            Closer <span>·</span> Closer <span>·</span> Closer <span>·</span>
+            Closer <span>·</span> Closer <span>·</span> Closer <span>·</span>
+            Closer <span>·</span> Closer <span>·</span> Closer <span>·</span>
+          </div>
+          <div class="thumb-disc"><span>Motion · Featured</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Ad campaign · 30 sec spot</span>
+          <span class="thumb-runtime">00 : 30</span>
+        </div>
+        <div class="meta">
+          <div class="title">Closer</div>
+          <div class="num">SW—03 · Featured</div>
+          <div class="tags">
+            <span class="client">Nike Running</span>
+            <span class="sep">/</span>
+            <span>Kinetic typography</span>
+            <span class="sep">/</span>
+            <span>Ad campaign</span>
+            <span class="sep">/</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 04 HALCYON — Brand identity (still) -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-halcyon">
+          <div class="mono"><i></i><i></i><i></i></div>
+          <div class="thumb-disc"><span>Still</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Brand identity</span>
+          <span class="thumb-runtime">Identity</span>
+        </div>
+        <div class="meta">
+          <div class="title">Halcyon</div>
+          <div class="num">SW—04</div>
+          <div class="tags">
+            <span class="client">Halcyon Studios</span>
+            <span class="sep">/</span>
+            <span>Identity system</span>
+            <span class="sep">/</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 05 SLOW BURN — Title sequence (motion) -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-slowburn">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <div class="thumb-disc"><span>Motion</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Title sequence</span>
+          <span class="thumb-runtime">01 : 52</span>
+        </div>
+        <div class="meta">
+          <div class="title">Slow Burn</div>
+          <div class="num">SW—05</div>
+          <div class="tags">
+            <span class="client">Netflix Originals</span>
+            <span class="sep">/</span>
+            <span>Title sequence</span>
+            <span class="sep">/</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 06 VERTEX — Experimental generative (motion · AI) -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-vertex">
+          <svg viewBox="-50 -50 100 100" fill="none" stroke-width=".6" stroke-linejoin="round">
+            <polygon points="0,-40 38,-12 24,32 -24,32 -38,-12"></polygon>
+            <polygon points="0,-40 24,32 -38,-12" class="accent"></polygon>
+            <polygon points="0,-40 -24,32 38,-12"></polygon>
+            <circle cx="0" cy="0" r="40"></circle>
+            <line x1="0" y1="-40" x2="0" y2="40"></line>
+            <line x1="-38" y1="-12" x2="38" y2="-12"></line>
+          </svg>
+          <div class="thumb-disc"><span>Motion</span><span class="ai">AI</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Experimental · Generative</span>
+          <span class="thumb-runtime">04 : 02</span>
+        </div>
+        <div class="meta">
+          <div class="title">Vertex</div>
+          <div class="num">SW—06</div>
+          <div class="tags">
+            <span class="client">Self-initiated</span>
+            <span class="sep">/</span>
+            <span>AI · Generative</span>
+            <span class="sep">/</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 07 MARGIN — Brand identity (still) -->
+      <li class="project" style="--col:6">
+        <div class="thumb thumb-margin">
+          <div class="thumb-disc"><span>Still</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Brand identity</span>
+          <span class="thumb-runtime">Identity · Print</span>
+        </div>
+        <div class="meta">
+          <div class="title">Margin</div>
+          <div class="num">SW—07</div>
+          <div class="tags">
+            <span class="client">Margin Capital</span>
+            <span class="sep">/</span>
+            <span>Identity system</span>
+            <span class="sep">/</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 08 NEW EARTH — Key art (still · AI) -->
+      <li class="project" style="--col:6">
+        <div class="thumb thumb-newearth">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="core"></div>
+          <div class="thumb-disc"><span>Still</span><span class="ai">AI</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Key art · Campaign</span>
+          <span class="thumb-runtime">Digital · OOH</span>
+        </div>
+        <div class="meta">
+          <div class="title">New Earth</div>
+          <div class="num">SW—08</div>
+          <div class="tags">
+            <span class="client">Patagonia</span>
+            <span class="sep">/</span>
+            <span>Key art · AI-assisted</span>
+            <span class="sep">/</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 09 ORBIT — Logo motion -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-orbit">
+          <div class="track"></div>
+          <div class="nucleus"></div>
+          <div class="thumb-disc"><span>Motion</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Logo motion</span>
+          <span class="thumb-runtime">00 : 08</span>
+        </div>
+        <div class="meta">
+          <div class="title">Orbit</div>
+          <div class="num">SW—09</div>
+          <div class="tags">
+            <span class="client">Orbit Health</span>
+            <span class="sep">/</span>
+            <span>Logo motion</span>
+            <span class="sep">/</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 10 STATIC — Experimental (motion · AI) -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-static">
+          <div class="thumb-disc"><span>Motion</span><span class="ai">AI</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Experimental</span>
+          <span class="thumb-runtime">03 : 21</span>
+        </div>
+        <div class="meta">
+          <div class="title">Static</div>
+          <div class="num">SW—10</div>
+          <div class="tags">
+            <span class="client">Self-initiated</span>
+            <span class="sep">/</span>
+            <span>Generative · AI</span>
+            <span class="sep">/</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 11 NIGHT SHIFT — Title sequence -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-nightshift">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <div class="thumb-disc"><span>Motion</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Title sequence</span>
+          <span class="thumb-runtime">02 : 38</span>
+        </div>
+        <div class="meta">
+          <div class="title">Night Shift</div>
+          <div class="num">SW—11</div>
+          <div class="tags">
+            <span class="client">FX Network</span>
+            <span class="sep">/</span>
+            <span>Title sequence</span>
+            <span class="sep">/</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 12 ECHO — Ad campaign (motion, full bleed feature) -->
+      <li class="project" style="--col:12">
+        <div class="thumb thumb-echo">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          <div class="thumb-disc"><span>Motion · Featured</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Ad campaign · Spot</span>
+          <span class="thumb-runtime">00 : 60</span>
+        </div>
+        <div class="meta">
+          <div class="title">Echo</div>
+          <div class="num">SW—12 · Featured</div>
+          <div class="tags">
+            <span class="client">Sonos</span>
+            <span class="sep">/</span>
+            <span>Ad campaign</span>
+            <span class="sep">/</span>
+            <span>Sound &amp; vision</span>
+            <span class="sep">/</span>
+            <span>2023</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 13 MERIDIAN — Brand identity (still) -->
+      <li class="project" style="--col:6">
+        <div class="thumb thumb-meridian">
+          <div class="sun"></div>
+          <div class="horizon"></div>
+          <div class="thumb-disc"><span>Still</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Brand identity · Packaging</span>
+          <span class="thumb-runtime">Identity · Print</span>
+        </div>
+        <div class="meta">
+          <div class="title">Meridian</div>
+          <div class="num">SW—13</div>
+          <div class="tags">
+            <span class="client">Meridian Coffee Co.</span>
+            <span class="sep">/</span>
+            <span>Identity · Packaging</span>
+            <span class="sep">/</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 14 PULSE — Generative (motion) -->
+      <li class="project" style="--col:6">
+        <div class="thumb thumb-pulse">
+          <svg viewBox="0 0 600 100" preserveAspectRatio="none">
+            <path d="M0 50 L80 50 L100 50 L110 20 L120 80 L130 50 L180 50 L200 30 L210 70 L220 50 L300 50 L320 10 L330 90 L340 50 L420 50 L440 35 L460 65 L480 50 L600 50"></path>
+          </svg>
+          <div class="thumb-disc"><span>Motion</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Experimental · Audio reactive</span>
+          <span class="thumb-runtime">06 : 14</span>
+        </div>
+        <div class="meta">
+          <div class="title">Pulse</div>
+          <div class="num">SW—14</div>
+          <div class="tags">
+            <span class="client">Self-initiated</span>
+            <span class="sep">/</span>
+            <span>Generative · Audio reactive</span>
+            <span class="sep">/</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 15 DREAMSCAPE — Title sequence (motion · AI) -->
+      <li class="project" style="--col:8">
+        <div class="thumb thumb-dreamscape">
+          <i></i><i></i><i></i>
+          <div class="thumb-disc"><span>Motion</span><span class="ai">AI</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Title sequence</span>
+          <span class="thumb-runtime">01 : 28</span>
+        </div>
+        <div class="meta">
+          <div class="title">Dreamscape</div>
+          <div class="num">SW—15</div>
+          <div class="tags">
+            <span class="client">HBO</span>
+            <span class="sep">/</span>
+            <span>Title sequence · AI-assisted</span>
+            <span class="sep">/</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </li>
+
+      <!-- 16 ZERO — Logo motion -->
+      <li class="project" style="--col:4">
+        <div class="thumb thumb-zero">
+          <div class="count">
+            <span>3</span><span>2</span><span>1</span><span>0</span>
+          </div>
+          <div class="thumb-disc"><span>Motion</span></div>
+          <span class="thumb-cap"><i class="dot"></i>Logo motion</span>
+          <span class="thumb-runtime">00 : 06</span>
+        </div>
+        <div class="meta">
+          <div class="title">Zero</div>
+          <div class="num">SW—16</div>
+          <div class="tags">
+            <span class="client">Zero Studio</span>
+            <span class="sep">/</span>
+            <span>Logo motion</span>
+            <span class="sep">/</span>
+            <span>2022</span>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<!-- ── clients ──────────────────────────────────────────────────────── -->
+<section class="section" id="clients" data-screen-label="03 Clients">
+  <div class="container">
+    <div class="section-head">
+      <div class="label"><span class="num">02</span>Selected clients</div>
+      <span></span>
+      <p class="lede">
+        A few of the brands and studios I've made things with — from
+        broadcast networks to independent type foundries.
+      </p>
+    </div>
+    <ul class="clients-list">
+      <li class="cell"><span class="num">01</span>Nike</li>
+      <li class="cell"><span class="num">02</span>A24</li>
+      <li class="cell"><span class="num">03</span>Netflix</li>
+      <li class="cell"><span class="num">04</span>HBO</li>
+      <li class="cell"><span class="num">05</span>Patagonia</li>
+      <li class="cell"><span class="num">06</span>Sonos</li>
+      <li class="cell"><span class="num">07</span>FX Network</li>
+      <li class="cell"><span class="num">08</span>Halcyon Studios</li>
+      <li class="cell"><span class="num">09</span>Sports Tribune</li>
+      <li class="cell"><span class="num">10</span>Margin Capital</li>
+      <li class="cell"><span class="num">11</span>Orbit Health</li>
+      <li class="cell"><span class="num">12</span>Meridian Coffee</li>
+      <li class="cell"><span class="num">13</span>Apple TV+</li>
+      <li class="cell"><span class="num">14</span>It's Nice That</li>
+      <li class="cell"><span class="num">15</span>Adidas Originals</li>
+      <li class="cell"><span class="num">16</span>Klim Type Foundry</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── about ────────────────────────────────────────────────────────── -->
+<section class="section" id="info" data-screen-label="04 Info">
+  <div class="container">
+    <div class="section-head">
+      <div class="label"><span class="num">03</span>Information</div>
+      <span></span>
+      <p class="lede">A short note about the practice and how to work together.</p>
+    </div>
+
+    <div class="about-grid">
+      <h2 class="about-lead">
+        Twelve years making things — <em>still and in&nbsp;motion.</em>
+      </h2>
+      <div class="about-cols">
+        <div>
+          <p>
+            Panos Lambrakis is an independent graphic and motion designer
+            working between Athens and the world. The studio takes on a handful
+            of projects a year — identity systems, title sequences, editorial
+            covers, key art, and longer-form generative work as personal practice.
+          </p>
+          <p>
+            Before going solo in 2018 he was lead motion designer at Buck,
+            then design director at a smaller Berlin-based studio. He teaches
+            a yearly workshop on AI-augmented design at the Royal Academy in
+            The&nbsp;Hague.
+          </p>
+        </div>
+        <div>
+          <p>
+            The practice is small on purpose — most projects are made by Panos
+            with one or two trusted collaborators, sometimes with generative AI
+            tools folded into the workflow as a sketchpad, a moodboard, or a
+            collaborator in its own right.
+          </p>
+          <p>
+            If you have a film opening, a brand launch, a poster, a piece of
+            audio looking for a visual home, or a stranger idea, the inbox is
+            open through October&nbsp;2026.
+          </p>
+        </div>
+
+        <dl class="about-info">
+          <div>
+            <dt>Practice</dt>
+            <dd>
+              <b>Graphic design</b><br>
+              <b>Motion design</b><br>
+              <b>AI-assisted</b><br>
+              <small style="color:var(--muted)">Athens · By appointment</small>
+            </dd>
+          </div>
+          <div>
+            <dt>Tools · AI</dt>
+            <dd>
+              <b>Midjourney</b> · stills<br>
+              <b>Runway</b> · motion<br>
+              <b>Sora</b> · film<br>
+              <b>Stable Diffusion</b> · custom<br>
+              <small style="color:var(--muted)">+ AE, Cinema 4D, Figma</small>
+            </dd>
+          </div>
+          <div>
+            <dt>Recognition</dt>
+            <dd>
+              <b>ADC Gold</b> · 2024<br>
+              <b>D&amp;AD Pencil</b> · 2023<br>
+              <b>Motionographer FOTY</b> · 2022
+            </dd>
+          </div>
+          <div>
+            <dt>Press · Speaking</dt>
+            <dd>
+              <b>It's Nice That</b> · feature<br>
+              <b>OFFF Barcelona</b> 2025<br>
+              <b>Pictoplasma</b> 2024<br>
+              <b>STASH</b> 156
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── contact ──────────────────────────────────────────────────────── -->
+<section class="contact" id="contact" data-screen-label="05 Contact">
+  <div class="container">
+    <p class="contact-eyebrow">
+      <span style="color:var(--paper)">↘</span>&nbsp;&nbsp;Let's talk
+    </p>
+    <h2 class="contact-title">
+      Have something to&nbsp;make —<br>
+      a brand, a film, a poster,<br>
+      <em>or somewhere&nbsp;between?</em>
+    </h2>
+
+    <div class="contact-foot">
+      <a class="contact-email" href="mailto:hello@lambrakis.studio">
+        hello@lambrakis.studio
+        <span class="arrow"></span>
+      </a>
+      <div class="contact-socials">
+        <a href="#">Instagram</a>
+        <a href="#">Vimeo</a>
+        <a href="#">Are.na</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── footer ───────────────────────────────────────────────────────── -->
+<footer>
+  <div class="container inner">
+    <span>© 2026 Panos Lambrakis · Lambrakis Motion · All rights reserved</span>
+    <span class="center">Site built in Athens — no analytics, no cookies, no nonsense</span>
+    <span class="right">v 9.2 · <a href="#top">↑ Back to top</a></span>
+  </div>
+</footer>
+
+<!-- ── tweaks mount ─────────────────────────────────────────────────── -->
+<div id="tweaks-root"></div>
+
+<!-- ── React + Babel ────────────────────────────────────────────────── -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+
+<!-- ── tiny in-page interactions ────────────────────────────────────── -->
+<script>
+  // Live clock — Athens local time
+  function tick() {
+    const d = new Date();
+    const fmt = (n) => String(n).padStart(2, '0');
+    const el = document.getElementById('clock');
+    if (el) {
+      el.textContent = `${fmt(d.getHours())}:${fmt(d.getMinutes())}:${fmt(d.getSeconds())}`;
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Smooth scroll for nav anchors
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').slice(1);
+      if (!id) return;
+      const t = document.getElementById(id);
+      if (!t) return;
+      e.preventDefault();
+      const y = t.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
