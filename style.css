@@ -487,11 +487,11 @@ a:focus-visible, button:focus-visible {
 /* --- Clients --- */
 .clients-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid var(--border);
 }
 .clients-list .cell {
-  padding: 32px 0;
+  padding: 16px 0;
   border-bottom: 1px solid var(--border);
   font-family: var(--display);
   font-weight: var(--display-weight);
