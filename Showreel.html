@@ -609,47 +609,8 @@
   .contact-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 40px;
-  }
-
-  .calendly-cta {
-    background: var(--surface);
-    padding: 32px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-
-  .calendly-cta h3 {
-    font-family: var(--display);
-    font-size: 24px;
-    margin-bottom: 8px;
-    color: var(--paper);
-  }
-
-  .calendly-cta p {
-    font-family: var(--sans);
-    font-size: 14px;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
-
-  .btn-calendly {
-    display: inline-block;
-    padding: 12px 24px;
-    border: 1px solid var(--paper);
-    color: var(--paper);
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    transition: background .25s, color .25s;
-  }
-
-  .btn-calendly:hover {
-    background: var(--paper);
-    color: var(--bg);
   }
 
   .contact-foot {
@@ -1358,14 +1319,8 @@
         <button type="submit" class="btn-submit">Send Message</button>
       </form>
 
-      <!-- Right Column: Calendly & Links -->
+      <!-- Right Column: Email & Links -->
       <div class="contact-info">
-        <div class="calendly-cta">
-          <h3>Book a Call</h3>
-          <p>Prefer to talk? Schedule a 15-min intro call.</p>
-          <a href="https://calendly.com/panos-lambrakis/new-meeting" target="_blank" class="btn-calendly">View Calendar</a>
-        </div>
-
         <div class="contact-foot">
           <a class="contact-email" href="mailto:hello@lambrakis.studio">
             hello@lambrakis.studio
