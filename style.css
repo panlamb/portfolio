@@ -269,6 +269,7 @@ a:focus-visible, button:focus-visible {
 .reel-meta .lhs { display: flex; gap: 32px; align-items: baseline; }
 .reel-meta b { color: var(--paper); font-weight: 500; }
 .reel {
+  display: block;
   position: relative;
   aspect-ratio: 21 / 9;
   border-radius: 8px;
@@ -290,6 +291,12 @@ a:focus-visible, button:focus-visible {
 @keyframes reel-bg {
   0%   { transform: scale(1.05) translate(0,0); }
   100% { transform: scale(1.18) translate(-3%, 2%); }
+}
+/* The latest cut plays muted under the grain; the link opens it with sound. */
+.reel-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
 .reel-grain {
   position:absolute; inset:0;
