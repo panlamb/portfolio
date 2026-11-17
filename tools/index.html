@@ -16,7 +16,10 @@
 <style>
   .tools { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
   .tool { display: grid; grid-template-columns: 56px 1fr auto; gap: 8px 28px; align-items: start;
+          --vid: 320px;
           padding: 28px 0; border-bottom: 1px solid var(--border); scroll-margin-top: 80px; }
+  .tool.has-video { grid-template-columns: 56px var(--vid) 1fr auto; }
+  .tool .vid { width: var(--vid); aspect-ratio: 1 / 1; background: var(--surface); border: 1px solid var(--border); display: block; }
   .tool .n { font-family: var(--mono); color: var(--muted); font-size: 14px; padding-top: 6px; }
   .tool h3 { margin: 0; font-family: var(--display); font-weight: var(--display-weight); font-size: clamp(22px, 2.4vw, 34px);
              letter-spacing: var(--display-tighten); color: var(--paper); }
@@ -32,7 +35,8 @@
   .terms { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 36px; max-width: 80ch; }
   .terms a { color: var(--accent); }
   @media (max-width: 720px) {
-    .tool { grid-template-columns: 1fr; }
+    .tool, .tool.has-video { grid-template-columns: 1fr; }
+    .tool .vid { width: 100%; }
     .tool .n { padding-top: 0; }
     .tool .actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
   }
@@ -82,16 +86,19 @@
 
     <ul class="tools">
 
-      <li class="tool" id="ai-to-ae-prep">
+      <li class="tool has-video" id="ai-to-ae-prep">
         <span class="n">01</span>
+        <video class="vid" src="videos/ai-to-ae-prep.mp4" poster="videos/ai-to-ae-prep.jpg"
+               autoplay muted loop playsinline controls preload="metadata"
+               aria-label="AI_to_AE_Prep in 15 seconds: before, one click, after"></video>
         <div>
           <h3>AI_to_AE_Prep<span class="app">Illustrator</span></h3>
           <p>Storyboard arrives with everything on one layer? Drag the moon in After Effects and the whole poster moves.
              One click gives every object its own named layer, in the original order, one clean file per artboard. Ready to animate.</p>
-          <div class="meta">v2.3 · Illustrator · tested on Windows, ExtendScript also runs on macOS</div>
+          <div class="meta">v2.4 · Illustrator · tested on Windows, ExtendScript also runs on macOS</div>
         </div>
         <div class="actions">
-          <a class="btn" href="downloads/AI_to_AE_Prep_v2.3.zip" download data-goatcounter-click="download-ai-to-ae-prep" data-goatcounter-title="Download AI_to_AE_Prep v2.3">Download .zip</a>
+          <a class="btn" href="downloads/AI_to_AE_Prep_v2.4.zip" download data-goatcounter-click="download-ai-to-ae-prep" data-goatcounter-title="Download AI_to_AE_Prep v2.4">Download .zip</a>
           <a class="btn ghost" href="guides/AI_to_AE_Prep_GUIDE.txt" data-goatcounter-click="guide-ai-to-ae-prep" data-goatcounter-title="Guide AI_to_AE_Prep">Read the guide</a>
         </div>
       </li>
