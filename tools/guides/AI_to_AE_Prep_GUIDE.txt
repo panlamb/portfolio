@@ -1,0 +1,119 @@
+AI → AE PREP · GUIDE
+Illustrator script by Panos Lambrakis · panlamb.github.io/portfolio/tools/
+==========================================================================
+
+
+WHAT IT SOLVES
+--------------
+A storyboard from an art director often arrives with everything on one layer. Import it into
+After Effects and you get one flat layer: drag the moon and the whole poster moves.
+
+AI_to_AE_Prep fixes the file before you import it. For every artboard it saves a clean .ai where
+every object sits on its own layer, with a readable name, in the original stacking order.
+In After Effects each object is then its own layer, ready to animate.
+
+Your original file is never changed: the script works on a copy.
+
+
+INSTALL
+-------
+Run once:   Illustrator > File > Scripts > Other Script… > AI_to_AE_Prep.jsx
+Keep it:    copy AI_to_AE_Prep.jsx into
+            Windows: C:\Program Files\Adobe\Adobe Illustrator <version>\Presets\<language>\Scripts\
+            macOS:   /Applications/Adobe Illustrator <version>/Presets/<language>/Scripts/
+            restart Illustrator; it appears under File > Scripts.
+
+
+HOW TO USE
+----------
+1. Open the storyboard in Illustrator and save it.
+2. File > Scripts > AI_to_AE_Prep.
+3. Check the options (defaults are fine for most files) and press OK.
+4. In After Effects: File > Import > the new .ai files, Import As: Composition – Retain Layer Sizes.
+
+
+THE DIALOG
+----------
+Clean-up (all on, except outlines)
+- Convert to RGB.
+- Delete hidden items, guides, stray points, empty layers/groups.
+- Delete everything outside the artboard.
+- Break link to symbols.
+- Expand appearance / effects / brushes (not text).
+- Create outlines from text. Default: OFF, text stays live.
+
+Layers
+- Prefix each layer name with its original layer/group. Example: "Layer 1 / Logo / shape".
+- Blend modes: own layer, mode in the name, e.g. "glow [screen]".
+
+Clipping masks (for motion in AE)
+- Artboard-sized masks: removed (the comp already crops there). Default.
+- As above + every other mask becomes two layers, for a Track Matte in AE:
+      "M1 MATTE · window"                           the mask shape, white, right above
+      "M1 window · content → Alpha Matte: M1 MATTE" what was inside, as ONE layer
+- No change: all clipping groups stay whole.
+- Margin around the artboard for zoom out / pan, up to 15% per side (0 = off).
+
+Output
+- Output folder. Default: "<file name>_AE" next to the original.
+- Open the new files in Illustrator when done. Default: on.
+- Write .text.json (for AE_Finish). Default: off. Not needed.
+
+
+WHAT HAPPENS TO EACH ARTBOARD
+-----------------------------
+1.  RGB document.
+2.  Raster effects at 300 ppi with a transparent background, so shadows and glows expand cleanly.
+3.  Hidden layers and objects, guides, one-point paths and empty text are deleted; everything is unlocked.
+4.  Symbols are broken.
+5.  Other artboards are removed.
+6.  Outside the artboard: anything with less than 2% of its area inside, or with its centre outside and
+    less than 15% inside, is deleted (this catches the neighbouring artboards' bleed).
+    Clipping groups count by their mask, not by the hidden artwork. Objects that cross the edge stay whole.
+7.  Text sitting at the top of a rectangular clipping group, not cut by the mask, moves just above the
+    group, so it gets its own layer and nothing changes on screen.
+8.  Clipping masks: handled as chosen above.
+9.  Groups with their own effect (e.g. a drop shadow on a group) are expanded first, then split:
+    the shadow gets its own layer, the content its own layers. The shadow is not lost.
+10. Expand appearance, one object at a time (not text, not placed images).
+11. One object = one top-level layer, in the original stacking order. Clipping groups and matte contents
+    stay whole. Group/layer opacity is multiplied into the object, so the picture does not change.
+12. Layer names: the object's name if it has one, otherwise "txt <first words>", "img <file>", "shape",
+    "compound", "clipgroup". Duplicates get numbers. [ ] in names become ( ).
+13. Blend modes: anything with a blend mode gets its own layer, keeps its mode in Illustrator and gets the
+    mode at the end of its name, e.g. "glow [screen]". After Effects does not read blend modes from
+    Illustrator objects, so set it in AE (AE_Setup does it for you).
+14. Margin: After Effects crops every layer at the artboard. If something extends past it, the artboard
+    grows symmetrically (centre unchanged) up to the margin you set, and a hidden layer
+    "FRAME 1920x1080 · the frame: Composition Settings 1920x1080, Anchor: centre" keeps the original frame.
+15. Saved as .ai with PDF compatibility (After Effects needs it to read the layers).
+    Name: <original>_01_<artboard name>.ai, or <original>_AE.ai for a single artboard.
+
+
+THE REPORT
+----------
+Per file: number of layers, blend modes, live text layers, masks removed or split, margin added, and what
+was deleted. Warnings for missing linked images, objects that could not be moved (layer "⚠ leftovers"),
+blend modes on both group and object, and layers that mix objects and sublayers.
+
+
+LIMITS
+------
+- An effect applied to a whole LAYER (targeting the layer's circle in the Layers panel) cannot be read by
+  any script and is lost. Drag the effect from the layer onto a group before running.
+- Outlined text cannot become text again.
+- Zoom-out room exists only if the artwork is bigger than the artboard.
+
+
+NEXT
+----
+AE_Setup (After Effects) finishes the job after import: blend modes from the [tags], track mattes from the
+M1/M2 pairs, anchor points to each object's centre, comp back to its frame. Released on
+panlamb.github.io/portfolio/tools/
+
+
+TERMS
+-----
+Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
+Please don't resell or re-upload the script; link to panlamb.github.io/portfolio/tools/ instead.
+Questions or commissions: panos.lambrakis@gmail.com
