@@ -103,6 +103,9 @@ LIMITS
   any script and is lost. Drag the effect from the layer onto a group before running.
 - Outlined text cannot become text again.
 - Zoom-out room exists only if the artwork is bigger than the artboard.
+- Windows limits paths (folders under 248, files under 260 characters). Deep OneDrive folders can hit it. If the default
+  output folder would be too long, the script suggests a short folder on the Desktop and shortens file names; you can
+  always pick another folder with "Change…".
 
 
 NEXT
