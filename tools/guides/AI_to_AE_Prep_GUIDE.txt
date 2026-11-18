@@ -12,7 +12,8 @@ AI_to_AE_Prep fixes the file before you import it. For every artboard it saves a
 every object sits on its own layer, with a readable name, in the original stacking order.
 In After Effects each object is then its own layer, ready to animate.
 
-Your original file is never changed: the script works on a copy.
+Your original storyboard is never changed: the script works on copies. (In "In the same file" mode it saves over the
+file you opened, and keeps a copy of it first.)
 
 
 INSTALL
@@ -26,10 +27,24 @@ Keep it:    copy AI_to_AE_Prep.jsx into
 
 HOW TO USE
 ----------
+Small storyboards (new files, one per artboard)
 1. Open the storyboard in Illustrator and save it.
-2. File > Scripts > AI_to_AE_Prep.
+2. File > Scripts > AI_to_AE_Prep > Source: "The open file, NEW FILES".
 3. Check the options (defaults are fine for most files) and press OK.
 4. In After Effects: File > Import > the new .ai files, Import As: Composition – Retain Layer Sizes.
+
+Large storyboards (recommended): split by hand, then "In the same file"
+1. File > Save As… > Illustrator (.ai) > tick "Save each artboard to a separate file" (All). Illustrator saves one
+   file per artboard.
+2. Open the file of one artboard.
+3. File > Scripts > AI_to_AE_Prep > Source: "The open file, IN THE SAME FILE" (pre-selected when the file has one
+   artboard) > OK. The result is saved over that file and stays open. With "keep a copy" (on by default) the
+   original goes to a "_before AI2AE" folder next to it.
+4. Next file.
+Or: Source "All .ai files in a folder" processes every artboard file of a folder in one run, into an "AE" folder
+(it skips the full storyboard file Illustrator saves next to them).
+
+A progress window shows the artboard, the step and the time while the script works.
 
 
 THE DIALOG
@@ -45,6 +60,12 @@ Clean-up (all on, except outlines)
 - Break link to symbols.
 - Expand appearance / effects / brushes (not text).
 - Create outlines from text. Default: OFF, text stays live.
+
+Layers to split
+- A list of the file's layers, all selected. Selected layers: every object becomes its own layer (as always).
+  Layers NOT selected stay whole: one layer each, with its own name (one layer in After Effects). They are still
+  cleaned (outside the artboard, expand…), just not split. Ctrl+click to add or remove one, Shift+click for a run,
+  "All" / "None".
 
 Layers
 - Prefix each layer name with its original layer/group. Example: "Layer 1 / Logo / shape".
