@@ -34,6 +34,10 @@ HOW TO USE
 
 THE DIALOG
 ----------
+The dialog remembers your last choices (ticks, mask option, artboard option). The first time, the defaults below
+apply. Settings live in AI_to_AE_Prep_settings.txt in your user settings folder (Windows: %APPDATA%); delete it to
+reset. The output folder is not remembered: it depends on the file.
+
 Clean-up (all on, except outlines)
 - Convert to RGB.
 - Delete hidden items, guides, stray points, empty layers/groups.
@@ -48,14 +52,20 @@ Layers
 
 Clipping masks (for motion in AE)
 - Artboard-sized masks: removed (the comp already crops there). Default.
+  "Artboard-sized" also covers masks a little inside or outside the artboard (up to 1.5% per side, bleed) and
+  rectangles with extra points or rounded corners.
 - As above + every other mask becomes two layers, for a Track Matte in AE:
       "M1 MATTE · window"                           the mask shape, white, right above
       "M1 window · content → Alpha Matte: M1 MATTE" what was inside, as ONE layer
+  In Illustrator the white MATTE covers the content: that is expected. In After Effects set the content's Track
+  Matte to the MATTE layer (AE_Setup, out 24 Nov, does it for every pair in one click).
+  A mask that covers more than 80% of the artboard (e.g. a background photo cropped just above a footer) stays
+  whole: it is the picture's frame, not a window to animate.
 - No change: all clipping groups stay whole.
-- Margin around the artboard for zoom out / pan, up to 15% per side (0 = off).
+- Artboard grows to the background that sticks out (for zoom out / pan). Default: off. See step 14.
 
 Output
-- Output folder. Default: "<file name>_AE" next to the original.
+- Output folder. Default: a new folder "<file name>_AE" inside the original file's folder, always.
 - Open the new files in Illustrator when done. Default: on.
 - Write .text.json (for AE_Finish). Default: off. Not needed.
 
@@ -83,16 +93,18 @@ WHAT HAPPENS TO EACH ARTBOARD
 13. Blend modes: anything with a blend mode gets its own layer, keeps its mode in Illustrator and gets the
     mode at the end of its name, e.g. "glow [screen]". After Effects does not read blend modes from
     Illustrator objects, so set it in AE (AE_Setup does it for you).
-14. Margin: After Effects crops every layer at the artboard. If something extends past it, the artboard
-    grows symmetrically (centre unchanged) up to the margin you set, and a hidden layer
-    "FRAME 1920x1080 · the frame: Composition Settings 1920x1080, Anchor: centre" keeps the original frame.
+14. Artboard to the background (only when ticked): After Effects crops every layer at the artboard. The artboard
+    grows as far as anything sticks out, on each side as needed (not symmetric, no limit). The original frame stays
+    as guides (locked layer "frame · guides") and as a hidden layer
+    "FRAME 768x512 @0,200 · the frame: Composition Settings 768x512" (@x,y = where the frame starts in the new
+    artboard, in px). AE_Setup reads it and sets the comp to exactly that frame, keeping the overflow for zoom out.
 15. Saved as .ai with PDF compatibility (After Effects needs it to read the layers).
     Name: <original>_01_<artboard name>.ai, or <original>_AE.ai for a single artboard.
 
 
 THE REPORT
 ----------
-Per file: number of layers, blend modes, live text layers, masks removed or split, margin added, and what
+Per file: number of layers, blend modes, live text layers, masks removed or split, artboard growth, and what
 was deleted. Warnings for missing linked images, objects that could not be moved (layer "⚠ leftovers"),
 blend modes on both group and object, and layers that mix objects and sublayers.
 
@@ -102,10 +114,11 @@ LIMITS
 - An effect applied to a whole LAYER (targeting the layer's circle in the Layers panel) cannot be read by
   any script and is lost. Drag the effect from the layer onto a group before running.
 - Outlined text cannot become text again.
-- Zoom-out room exists only if the artwork is bigger than the artboard.
-- Windows limits paths (folders under 248, files under 260 characters). Deep OneDrive folders can hit it. If the default
-  output folder would be too long, the script suggests a short folder on the Desktop and shortens file names; you can
-  always pick another folder with "Change…".
+- Zoom-out room exists only if the artwork is bigger than the artboard. Ask for background images with 10–15% extra.
+- Windows limits paths (folders under 248, files under 260 characters). Deep OneDrive folders can hit it. The output
+  folder still goes next to the original: names get shorter instead, first the folder's (down to "AE"), then the
+  artboard's, then the file's; the _01, _02 number always stays. Only if even "AE" does not fit, the folder goes to
+  the Desktop. "Change…" picks any other folder.
 
 
 NEXT
