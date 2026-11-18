@@ -32,6 +32,11 @@
   .btn.ghost { background: transparent; color: var(--accent); }
   .soon { font-family: var(--mono); font-size: 13px; color: var(--muted); border: 1px dashed var(--border); padding: 10px 16px; white-space: nowrap; }
   .tool.is-soon h3, .tool.is-soon p { opacity: .55; }
+  .new { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+         color: var(--bg); background: var(--accent); padding: 3px 8px; margin-left: 10px; vertical-align: middle; }
+  .changes { list-style: disc; margin: 12px 0 0; padding: 0 0 0 18px; color: var(--paper); opacity: .82; max-width: 62ch; line-height: 1.5; font-size: 15px; }
+  .changes li { margin: 2px 0; }
+  .changes-title { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 14px; text-transform: uppercase; letter-spacing: .08em; }
   .terms { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 36px; max-width: 80ch; }
   .terms a { color: var(--accent); }
   @media (max-width: 720px) {
@@ -92,13 +97,20 @@
                autoplay muted loop playsinline controls preload="metadata"
                aria-label="AI_to_AE_Prep in 15 seconds: before, one click, after"></video>
         <div>
-          <h3>AI_to_AE_Prep<span class="app">Illustrator</span></h3>
+          <h3>AI_to_AE_Prep<span class="app">Illustrator</span><span class="new">New release · v3.5</span></h3>
           <p>Storyboard arrives with everything on one layer? Drag the moon in After Effects and the whole poster moves.
              One click gives every object its own named layer, in the original order, one clean file per artboard. Ready to animate.</p>
-          <div class="meta">v3.0 · Illustrator · tested on Windows, ExtendScript also runs on macOS</div>
+          <div class="meta">v3.5 · Illustrator · tested on Windows, ExtendScript also runs on macOS</div>
+          <div class="changes-title">What's new in v3.5 (since v3.0)</div>
+          <ul class="changes">
+            <li><b>Big storyboards, no freezing:</b> split with Illustrator's "Save each artboard to a separate file", open an artboard, run it "in the same file". It saves over that file and keeps a backup.</li>
+            <li><b>Choose which layers to split.</b> The rest stay whole, one layer each.</li>
+            <li><b>A whole folder in one run</b>, into a single "AE" folder.</li>
+            <li><b>Progress window</b> with artboard, step and time.</li>
+          </ul>
         </div>
         <div class="actions">
-          <a class="btn" href="downloads/AI_to_AE_Prep_v3.0.zip" download data-goatcounter-click="download-ai-to-ae-prep" data-goatcounter-title="Download AI_to_AE_Prep v3.0">Download .zip</a>
+          <a class="btn" href="downloads/AI_to_AE_Prep_v3.5.zip" download data-goatcounter-click="download-ai-to-ae-prep" data-goatcounter-title="Download AI_to_AE_Prep v3.5">Download .zip</a>
           <a class="btn ghost" href="guides/AI_to_AE_Prep_GUIDE.txt" data-goatcounter-click="guide-ai-to-ae-prep" data-goatcounter-title="Guide AI_to_AE_Prep">Read the guide</a>
         </div>
       </li>
