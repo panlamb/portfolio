@@ -146,11 +146,14 @@ NEXT
 ----
 AE_Setup (After Effects) finishes the job after import: blend modes from the [tags], track mattes from the
 M1/M2 pairs, anchor points to each object's centre, comp back to its frame. Released on
-panlamb.github.io/portfolio/tools/
+panlamb.github.io/portfolio/tools/ · how the two work together: Prep_and_Setup_WORKFLOW.txt
 
 
 TERMS
 -----
 Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
 Please don't resell or re-upload the script; link to panlamb.github.io/portfolio/tools/ instead.
+Found a bug, or it does not work? Email panos.lambrakis@gmail.com with: the script and version, your
+After Effects / Illustrator version and Windows or Mac, what you did, what you expected, what happened, and
+screenshots (the error or the report, the Layers panel, the dialog settings).
 Questions or commissions: panos.lambrakis@gmail.com

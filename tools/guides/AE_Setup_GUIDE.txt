@@ -200,10 +200,14 @@ Layer names still end in "/file.ai"
 11. WORKS WITH
 --------------
 AI_to_AE_Prep (Illustrator), the step before this one: panlamb.github.io/portfolio/tools/
+How the two work together, with the recommended Prep settings: Prep_and_Setup_WORKFLOW.txt (in the zip and on the page).
 
 
 12. TERMS
 ---------
 Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
 Please don't resell or re-upload the script; link to panlamb.github.io/portfolio/tools/ instead.
+Found a bug, or it does not work? Email panos.lambrakis@gmail.com with: the script and version, your
+After Effects / Illustrator version and Windows or Mac, what you did, what you expected, what happened, and
+screenshots (the error or the report, the Layers panel, the dialog settings).
 Questions or commissions: panos.lambrakis@gmail.com · panlamb.github.io/portfolio

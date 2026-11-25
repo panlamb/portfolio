@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Tools — Free Illustrator & After Effects scripts · Panos Lambrakis</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Free scripts for the Illustrator → After Effects workflow, written by motion designer Panos Lambrakis. One new tool every Tuesday.">
+<meta name="description" content="Free scripts for the Illustrator → After Effects workflow, written by motion designer Panos Lambrakis. Free, each with an English guide.">
 <meta property="og:title" content="Tools — Free Illustrator & After Effects scripts">
 <meta property="og:description" content="Small scripts I wrote for my own Illustrator → After Effects work. Free to download, with an English guide.">
 <meta property="og:type" content="website">
@@ -39,6 +39,10 @@
   .changes-title { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 14px; text-transform: uppercase; letter-spacing: .08em; }
   .terms { font-family: var(--mono); font-size: 13px; color: var(--muted); line-height: 1.7; margin-top: 36px; max-width: 80ch; }
   .terms a { color: var(--accent); }
+  .bugs { font-family: var(--mono); font-size: 13px; line-height: 1.7; color: var(--muted); border: 1px dashed var(--border);
+          padding: 14px 18px; margin: 0 0 28px; max-width: 100ch; }
+  .bugs b { color: var(--paper); font-weight: 500; }
+  .bugs a { color: var(--accent); }
   @media (max-width: 720px) {
     .tool, .tool.has-video { grid-template-columns: 1fr; }
     .tool .vid { width: 100%; }
@@ -85,9 +89,15 @@
       <span></span>
       <p class="lede">
         Small scripts I wrote for my own Illustrator → After Effects work.
-        Free to download, each with an English guide. A new one every Tuesday.
+        Free to download, each with an English guide. New ones as they are ready.
       </p>
     </div>
+
+    <p class="bugs">
+      <b>Found a bug, or a script does not work?</b> Email <a href="mailto:panos.lambrakis@gmail.com?subject=Bug%20report%3A%20&amp;body=Script%20and%20version%3A%0AAfter%20Effects%20%2F%20Illustrator%20version%3A%0AWindows%20or%20Mac%3A%0AWhat%20I%20did%3A%0AWhat%20I%20expected%3A%0AWhat%20happened%3A%0A(Attach%20screenshots%3A%20the%20error%20or%20report%2C%20the%20Layers%20panel%2C%20the%20dialog%20settings.)" data-goatcounter-click="bug-report">panos.lambrakis@gmail.com</a>
+      with a short description and screenshots: the error or the script's report, your Layers panel, the dialog settings.
+      Add the script version, your After Effects / Illustrator version and Windows or Mac. I read every one.
+    </p>
 
     <ul class="tools">
 
@@ -112,15 +122,20 @@
         <div class="actions">
           <a class="btn" href="downloads/AI_to_AE_Prep_v3.5.zip" download data-goatcounter-click="download-ai-to-ae-prep" data-goatcounter-title="Download AI_to_AE_Prep v3.5">Download .zip</a>
           <a class="btn ghost" href="guides/AI_to_AE_Prep_GUIDE.txt" data-goatcounter-click="guide-ai-to-ae-prep" data-goatcounter-title="Guide AI_to_AE_Prep">Read the guide</a>
+          <a class="btn ghost" href="guides/Prep_and_Setup_WORKFLOW.txt" data-goatcounter-click="workflow-ai-to-ae-prep" data-goatcounter-title="Workflow Prep + Setup (ai-to-ae-prep)">Use with AE_Setup</a>
         </div>
       </li>
 
-      <li class="tool" id="ae-setup">
+      <li class="tool has-video" id="ae-setup">
         <span class="n">02</span>
+        <video class="vid" src="videos/ae-setup.mp4" poster="videos/ae-setup.jpg"
+               autoplay muted loop playsinline controls preload="metadata"
+               aria-label="AE_Setup in 15 seconds: flat glows and a loose mask, one click, the storyboard as drawn"></video>
         <div>
           <h3>AE_Setup<span class="app">After Effects</span><span class="new">New release · v1.3</span></h3>
           <p>Import done, and every glow went flat, every mask stopped moving, every anchor sits in the wrong corner.
-             Select the comps, one click puts it all back. The second half of AI_to_AE_Prep.</p>
+             Select the comps, one click puts it all back. The second half of AI_to_AE_Prep: run Prep in Illustrator,
+             import, run Setup. "Use with AI_to_AE_Prep" has the settings that make the two work as one.</p>
           <div class="meta">v1.3 · After Effects · tested on Windows, ExtendScript also runs on macOS</div>
           <div class="changes-title">What one click does</div>
           <ul class="changes">
@@ -133,6 +148,7 @@
         <div class="actions">
           <a class="btn" href="downloads/AE_Setup_v1.3.zip" download data-goatcounter-click="download-ae-setup" data-goatcounter-title="Download AE_Setup v1.3">Download .zip</a>
           <a class="btn ghost" href="guides/AE_Setup_GUIDE.txt" data-goatcounter-click="guide-ae-setup" data-goatcounter-title="Guide AE_Setup">Read the guide</a>
+          <a class="btn ghost" href="guides/Prep_and_Setup_WORKFLOW.txt" data-goatcounter-click="workflow-ae-setup" data-goatcounter-title="Workflow Prep + Setup (ae-setup)">Use with AI_to_AE_Prep</a>
         </div>
       </li>
 
@@ -195,7 +211,8 @@
     <p class="terms">
       Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
       Please don't resell or re-upload the scripts; link to this page instead.<br>
-      Questions, bugs or a commission: <a href="mailto:panos.lambrakis@gmail.com">panos.lambrakis@gmail.com</a>
+      Bugs: email a description and screenshots to <a href="mailto:panos.lambrakis@gmail.com?subject=Bug%20report%3A%20&amp;body=Script%20and%20version%3A%0AAfter%20Effects%20%2F%20Illustrator%20version%3A%0AWindows%20or%20Mac%3A%0AWhat%20I%20did%3A%0AWhat%20I%20expected%3A%0AWhat%20happened%3A%0A(Attach%20screenshots%3A%20the%20error%20or%20report%2C%20the%20Layers%20panel%2C%20the%20dialog%20settings.)">panos.lambrakis@gmail.com</a>.
+      Questions or a commission: <a href="mailto:panos.lambrakis@gmail.com">panos.lambrakis@gmail.com</a>
     </p>
   </div>
 </section>
