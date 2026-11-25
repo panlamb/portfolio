@@ -1,0 +1,94 @@
+AI_to_AE_Prep + AE_Setup · how they work together
+Illustrator → After Effects, storyboard to animation-ready comps · Panos Lambrakis · panlamb.github.io/portfolio/tools/
+==========================================================================================
+
+Two scripts, one pipeline:
+- AI_to_AE_Prep (Illustrator) splits the storyboard: one object = one layer, named, in order, one .ai per artboard.
+  It cannot set anything inside After Effects, so it writes what AE needs into the layer NAMES.
+- AE_Setup (After Effects) reads those names after import and does the rest in one click.
+Each script also works alone. Together they save the whole hand set-up between the two apps.
+
+
+THE PIPELINE, STEP BY STEP
+--------------------------
+In Illustrator
+1. Open the storyboard. Save a copy you keep untouched.
+2. Big storyboard? File > Save As… > Illustrator (.ai) > tick "Save each artboard to a separate file".
+3. File > Scripts > AI_to_AE_Prep. Recommended settings for the pipeline:
+     Layers:          "Blend modes: own layer, mode in the name"                         ON
+     Clipping masks:  "As above + other masks as pairs M1 MATTE / M1 … content"         choose it
+     Artboard:        "Artboard grows to the background that sticks out"                ON, if you want zoom-out room
+     Clean-up:        defaults (text stays live)
+   Press OK. You get one clean .ai per artboard.
+
+In After Effects
+4. File > Import > File… > select the .ai files. Import As: Composition – Retain Layer Sizes.
+   (Not "Footage". Not plain "Composition": that makes every layer the size of the artboard.)
+5. In the Project panel, select all the new comps.
+6. File > Scripts > AE_Setup.jsx. Leave everything ticked. OK.
+7. Read the report. Animate.
+
+
+WHAT PREP WRITES → WHAT SETUP DOES WITH IT
+------------------------------------------
+Prep (Illustrator)                                   Setup (After Effects)
+-------------------------------------------------    -------------------------------------------------
+Layer names, e.g. "Layer 1 / bg / shape".            Removes the "/file.ai" AE adds to every name.
+AE adds "/file.ai" on import.
+
+"glow [screen]": the object keeps its blend mode     Sets the layer's blend mode to Screen, removes the tag:
+in Illustrator, the mode is copied into the name      "glow". 15 modes: multiply, screen, overlay, soft-light,
+(AE does not read blend modes from .ai objects).      hard-light, color-dodge, color-burn, darken, lighten,
+                                                      difference, exclusion, hue, saturation, color, luminosity.
+
+Mask pairs: "M1 MATTE · window" (white shape) and     Links them: content Track Matte = Alpha Matte from
+"M1 window · content → Alpha Matte: M1 MATTE".        "M1 MATTE · window", hides the matte, shortens the name
+In Illustrator the white matte covers the content:    to "M1 window · content". The window can now move,
+that is expected.                                     scale or reveal on its own.
+
+Grown artboard + hidden layer                         Crops the comp back to WxH starting at x,y, moves every
+"FRAME 1920x1080 @x,y" + locked "frame · guides".     layer (and its keyframes) so nothing shifts, deletes the
+                                                      FRAME and guides layers. The overflow stays for zoom out.
+
+Every object on its own layer.                        Anchor point to the centre of each layer, position
+                                                      corrected so nothing moves: scale and rotate pivot on
+                                                      the object.
+
+One .ai per artboard → AE makes a                     Moves each comp's footage into a folder named after
+"<file>.ai Layers" folder per import.                 the comp, deletes the empty "… Layers" folders.
+
+
+RUNNING ONLY PART OF IT
+-----------------------
+- No masks to animate? Leave Prep's mask option on the default (artboard-sized masks removed). Setup finds no pairs
+  and says nothing.
+- No zoom-out needed? Leave "Artboard grows…" off in Prep. There is no FRAME layer; Setup leaves the comp size alone.
+- Already set up a comp by hand? Run Setup with only "Anchor point to the centre" ticked.
+- Do not rename layers between Prep and Setup: Setup finds the tags, the M1 pairs and the FRAME layer by name.
+
+
+COMMON MISTAKES
+---------------
+- Imported as "Footage" → one flat layer. Re-import as Composition – Retain Layer Sizes.
+- Imported as plain "Composition" → every layer is the artboard size; anchors land in the middle of the artboard,
+  not the object. Re-import as Retain Layer Sizes.
+- Ran Setup on the footage or on a folder → "No comp found". Select the comps themselves.
+- Edited the .ai after Prep and re-imported → the FRAME may no longer match ("FRAME … falls outside the comp").
+  Run Prep again on the original.
+- An effect on a whole Illustrator LAYER (the layer's target circle) is lost in Prep. Move it onto a group first.
+
+
+FOUND A BUG, OR IT DOES NOT WORK?
+---------------------------------
+Email panos.lambrakis@gmail.com with:
+- which script and version (AI_to_AE_Prep 3.5, AE_Setup 1.3),
+- Illustrator / After Effects version and Windows or Mac,
+- what you did, what you expected, what happened,
+- screenshots: the error message or the script's report, your Layers panel, the dialog settings.
+A small test file helps most (never send files you are not allowed to share).
+
+
+TERMS
+-----
+Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
+Please don't resell or re-upload the scripts; link to panlamb.github.io/portfolio/tools/ instead.

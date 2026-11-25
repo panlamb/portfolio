@@ -1,0 +1,213 @@
+AE Setup v1.3 · After Effects · one click after importing AI_to_AE_Prep files: clean names, blend modes, track mattes, comp back to its frame, centred anchors, tidy project
+After Effects script by Panos Lambrakis · panlamb.github.io/portfolio/tools/
+==========================================================================================
+
+
+1. WHAT IT SOLVES
+-----------------
+AI_to_AE_Prep (Illustrator) turns a storyboard into .ai files where every object sits on its own layer.
+After import, After Effects still leaves you with a page of chores in every comp:
+- every layer name ends in "/file.ai";
+- blend modes from Illustrator are lost (Prep writes them into the name, e.g. "glow [screen]");
+- clipping masks arrive as two loose layers that you link by hand as a track matte;
+- the comp is the size of the grown artboard, not the frame you will deliver;
+- every anchor point sits in the top-left corner, so scale and rotation pivot from the wrong place;
+- the Project panel fills with one "<file>.ai Layers" folder per artboard.
+
+AE Setup does all of that in one run, on as many comps as you select, as one Undo.
+
+
+2. INSTALL
+----------
+Run once (no install):
+    After Effects > File > Scripts > Run Script File… > AE_Setup.jsx
+
+Keep it in the File > Scripts menu: copy AE_Setup.jsx into
+    Windows: C:\Program Files\Adobe\Adobe After Effects <version>\Support Files\Scripts\
+    macOS:   /Applications/Adobe After Effects <version>/Scripts/
+then restart After Effects. It appears under File > Scripts > AE_Setup.jsx.
+
+It is a script, not a panel: do not put it in "ScriptUI Panels".
+It does not write files or use the network, so the preference
+"Allow Scripts to Write Files and Access Network" is not needed.
+Windows and Mac. Track mattes use the AE 2023+ method when it exists and fall back to the older one.
+
+
+3. HOW TO USE
+-------------
+Typical workflow (storyboard → animation-ready comps):
+1. In Illustrator, run AI_to_AE_Prep on the storyboard (see AI_to_AE_Prep_GUIDE.txt).
+   For the frame step, tick "Artboard grows to the background that sticks out" in Prep.
+2. In After Effects: File > Import > File… > select the .ai files Prep made.
+   Import As: Composition – Retain Layer Sizes. (Not "Footage", not plain "Composition".)
+3. In the Project panel, select the comps (Ctrl/Cmd-click for several).
+4. File > Scripts > AE_Setup.jsx (or Run Script File…).
+5. In the dialog, leave everything ticked and press OK.
+6. Read the report. Done: animate.
+
+Only one step (e.g. centre the anchors in a comp you already set up):
+1. Select the comp, run the script, untick everything except "Anchor point to the centre of each layer", OK.
+
+Which comps it works on:
+- the comps selected in the Project panel;
+- if none is selected, the comp open in the viewer;
+- if there is neither, it tells you and changes nothing.
+
+
+4. THE DIALOG
+-------------
+The first line shows how many comps it will work on. Then one checkbox per step, all ticked by default:
+
+- Clean names + blend modes from tags like [screen]                      default: on
+  Removes "/file.ai" from every layer name and turns a tag at the end of a name into a blend mode.
+  Turn off if your layer names end in [something] that is not a blend mode.
+
+- Track mattes from the M1, M2… pairs                                    default: on
+  Links the mask pairs Prep made. Turn off if you want to link mattes by hand.
+
+- Crop the comp back to its FRAME                                        default: on
+  Resizes the comp to the frame stored in the FRAME layer, without moving anything on screen.
+  Turn off to keep the full grown artboard as the comp size.
+
+- Organise project: footage into one folder per comp                     default: on
+  Turn off if you already have your own Project panel structure.
+
+- Anchor point to the centre of each layer (nothing moves)               default: on
+  Turn off if you need anchors elsewhere (e.g. at a hinge for a door).
+
+OK runs the ticked steps. Cancel changes nothing.
+
+
+5. WHAT HAPPENS
+---------------
+For each comp, in this order:
+
+a) Names. After Effects adds "/file.ai" to layers imported from Illustrator. The script removes it:
+       "Layer 1 / bg / shape/scene_01.ai"  →  "Layer 1 / bg / shape"
+
+b) Blend modes. A tag at the end of the name sets the blend mode, then the tag is removed:
+       "glow [screen]"  →  layer "glow", blend mode Screen
+   Tags it knows: multiply, screen, overlay, soft-light, hard-light, color-dodge, color-burn, darken, lighten,
+   difference, exclusion, hue, saturation, color, luminosity. An unknown tag is left as it is and listed in the report.
+
+c) Track mattes. It finds the pairs Prep writes for clipping masks:
+       "M1 MATTE · circle"
+       "M1 circle · content → Alpha Matte: M1 MATTE"
+   The content layer gets Track Matte = Alpha Matte from "M1 MATTE · circle"; the matte's video switch is turned off;
+   the content is renamed "M1 circle · content".
+   - AE 2023 and later: the matte can be any layer in the comp; layer order does not change.
+   - Older AE: the matte is moved directly above its content, as those versions require.
+
+d) Frame. If the comp has a layer named "FRAME 1920x1080 @x,y …" (written by AI_to_AE_Prep 3.0+):
+   - the comp becomes 1920x1080, starting at x,y: exactly the frame the guides showed in Illustrator;
+   - without "@x,y" (files from older Prep versions) the frame is centred;
+   - every layer without a parent moves by the same amount, so nothing shifts inside the frame. This includes
+     position keyframes, Separate Dimensions, and the Point of Interest of cameras and lights;
+   - layers with a parent follow their parent;
+   - locked layers are unlocked for the move and locked again;
+   - expressions are not changed;
+   - the FRAME layer is deleted, and so is the "frame · guides" (or Greek "κάδρο · guides") layer if it came in;
+   - artwork outside the frame stays on its layers, so you can zoom out or pan into it.
+
+e) Anchor points (after the frame step). Each layer's anchor goes to the centre of its visible content, and
+   position is corrected (scale and rotation included, position keyframes too) so nothing moves on screen.
+   Scale and rotation then pivot around the object itself. Null and guide layers are skipped.
+
+f) Project. The footage items of each .ai (one per Illustrator layer) move into a folder named after the comp,
+   next to the comp. The "<file>.ai Layers" folder After Effects made is deleted if it is left empty.
+   Only footage from .ai files moves: images, audio and video shared between comps stay where they are.
+
+Nothing is saved to disk and no file is created.
+
+
+6. THE REPORT
+-------------
+At the end an alert shows:
+- First line: totals for all comps, e.g. "4 comp(s): 12 blend modes, 3 mattes, 4 frames, 186 anchors."
+- Then one block per comp, e.g.
+       scene_01: 3 blend modes, 1 mattes, comp 2220x1200 → 1920x1080, 47 anchors centred, 47 footage moved to its folder
+  "nothing to do" means the comp had nothing the ticked steps could change.
+- Lines starting with "-" under a comp are notes: things it skipped, and why (see 9 and 10).
+
+
+7. UNDO AND SAFETY
+------------------
+- One run = one Undo. Edit > Undo AE Setup (Ctrl+Z / Cmd+Z) restores every comp it touched.
+- Your .ai files are never changed; only the open After Effects project is.
+- Running it twice is safe: names are already clean, mattes already linked, the FRAME layer is gone, anchors are
+  already centred. The second run reports "nothing to do" for most steps.
+- Save the project before running it on a large job, as with any script.
+
+
+8. LIMITS
+---------
+- It reads the names AI_to_AE_Prep writes. It also works on other Illustrator imports, but only the steps whose
+  names it finds (e.g. "/file.ai" cleanup and anchors) will do anything.
+- Anchor points are not moved on layers with: keyframes or an expression on the anchor; keyframes or an expression on
+  scale or rotation; an expression on position; 3D layers with X/Y rotation or orientation. These are listed in the report.
+- The anchor goes to the content's centre at the current time indicator. For layers whose content changes size
+  over time, park the time indicator where you want it measured.
+- The frame step does not grow a comp: a FRAME larger than the comp, or one that falls outside it, is skipped.
+- Expressions that use absolute positions are not rewritten after the frame step; check them.
+- Blend modes come only from tags in the name, not from the .ai itself (After Effects does not import them).
+
+
+9. TROUBLESHOOTING
+------------------
+"No comp found."
+    Nothing selected in the Project panel and no comp open. Select the comps (not the footage, not the folders)
+    or open one in the viewer, and run again.
+
+"No project is open."
+    Open or create a project first.
+
+Report: "'name': unknown tag [xyz]"
+    The tag is not one of the 15 blend modes listed in 5b (spelling, or a custom tag). Set the mode by hand or rename.
+
+Report: "'name': matte layer not found: M3 MATTE"
+    The content layer exists but its matte was deleted or renamed. Restore the name "M3 MATTE · …" and run again,
+    or link the matte by hand.
+
+Report: "FRAME 1920x1080 is larger than the comp: size not changed"  /  "FRAME @x,y falls outside the comp"
+    The comp was resized or cropped before the run, or the .ai was edited after Prep. Re-import the .ai from Prep.
+
+Report: "'name': anchor not changed (…)"
+    The reason in brackets is one of the cases in 8. Move that anchor by hand (Pan Behind tool, Y) if needed.
+
+Report: "'name': not moved (…)"
+    After Effects refused to move that layer (rare: e.g. a property it cannot set). Move it by hand by the same amount
+    as the comp change shown on the comp's line.
+
+Nothing happened to the comp size
+    The comp has no "FRAME …" layer: in Prep, tick "Artboard grows to the background that sticks out", or the comp
+    already matches the frame.
+
+Layer names still end in "/file.ai"
+    "Clean names + blend modes" was unticked. Run again with it ticked.
+
+"Illegal use of reserved word" when opening the script
+    That was version 1.1 in some After Effects versions. Use 1.3 (this file).
+
+
+10. VERSION HISTORY
+-------------------
+1.3  Frame anywhere in the comp ("FRAME WxH @x,y" from AI_to_AE_Prep 3.0); deletes the "frame · guides" layer.
+1.2  Fix: "Illegal use of reserved word" in After Effects.
+1.1  Dialog with one checkbox per step; project organisation; anchor points to the centre.
+1.0  Names, blend modes, track mattes, comp back to its frame.
+
+
+11. WORKS WITH
+--------------
+AI_to_AE_Prep (Illustrator), the step before this one: panlamb.github.io/portfolio/tools/
+How the two work together, with the recommended Prep settings: Prep_and_Setup_WORKFLOW.txt (in the zip and on the page).
+
+
+12. TERMS
+---------
+Free to use in personal and commercial projects. Provided as is, without warranty: keep a copy of your files.
+Please don't resell or re-upload the script; link to panlamb.github.io/portfolio/tools/ instead.
+Found a bug, or it does not work? Email panos.lambrakis@gmail.com with: the script and version, your
+After Effects / Illustrator version and Windows or Mac, what you did, what you expected, what happened, and
+screenshots (the error or the report, the Layers panel, the dialog settings).
+Questions or commissions: panos.lambrakis@gmail.com · panlamb.github.io/portfolio
